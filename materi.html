@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Materi Perkuliahan - Prodi Sistem Informasi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            background-color: lightgray;
+        }
+        .materi-content {
+            background-color: white;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 1100px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+        }
+        .materi-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #444;
+            padding-bottom: 15px;
+        }
+        .materi-header h2 {
+            color: navy;
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .materi-header p {
+            color: #333;
+            margin: 10px 0 0 0;
+        }
+        .card-input {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+        .btn-save {
+            grid-column: 1 / -1;
+            padding: 15px;
+            background: navy;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        .btn-save:hover {
+            background: #001a33;
+        }
+        .materi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .materi-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-top: 4px solid #3399ff;
+            transition: transform 0.3s ease;
+        }
+        .materi-card:hover {
+            transform: translateY(-5px);
+        }
+        .materi-card-content {
+            padding: 20px;
+        }
+        .materi-tag {
+            background: #e7f3ff;
+            color: #0055aa;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 15px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+        .materi-card h4 {
+            margin-bottom: 12px;
+            color: navy;
+            font-size: 16px;
+        }
+        .materi-list {
+            margin-left: 18px;
+            color: #555;
+            font-size: 14px;
+        }
+        .materi-list li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== BLUE HEADER ===== -->
+<header class="blue-header">
+  <div class="blue-header-inner">
+    <div class="header-left">
+      <img src="asset/logo.png" alt="Logo Program Studi" class="header-logo">
+    </div>
+
+    <div class="brand-row">
+      <h1 class="site-title">PROGRAM STUDI SISTEM INFORMASI</h1>
+      <p class="header-sub">Institut Teknologi dan Ilmu Sosial Khatulistiwa (ITS Khatulistiwa) – Pasaman Barat</p>
+    </div>
+      <nav class="main-nav" role="navigation" aria-label="Main menu">
+        <div class="nav-wrapper">
+          <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu">☰</button>
+          <div class="nav-links" id="primary-menu" role="menubar"></div>
+        </div>
+      </nav>
+    </div>
+</header>
+
+<!-- ===== KONTEN UTAMA ===== -->
+<div class="container">
+    <div class="materi-content">
+        <!-- Header Materi -->
+        <div class="materi-header">
+            <h2>Materi Perkuliahan</h2>
+            <p>Program Studi Sistem Informasi - ITS Khatulistiwa</p>
+        </div>
+
+        <!-- Form Input Materi -->
+        <div class="card-input">
+            <form id="formMateri" class="form-grid">
+                <div class="form-group">
+                    <label>Pilih Mata Kuliah</label>
+                    <select id="inputMatkul" required>
+                        <option value="Semester 1">Paket Pemrograman 1</option>
+                        <option value="Semester 1">Algoritma dan Struktur Data 1</option>
+                        <option value="Semester 2">Paket Pemrograman 2</option>
+                        <option value="Semester 2">Sistem Basis Data I</option>
+                        <option value="Semester 3">Pemrograman Web</option>
+                        <option value="Semester 3">Sistem Basis Data II</option>
+                        <option value="Semester 4">Pemrograman Web II</option>
+                        <option value="Semester 4">Analisis dan Perancangan Sistem Informasi I</option>
+                        <option value="Semester 5">Pemrograman Berorientasi Objek I</option>
+                        <option value="Semester 5">Sistem Penunjang Keputusan</option>
+                        <option value="Semester 6">Cloud Computing</option>
+                        <option value="Semester 6">Deep Learning For Business</option>
+                        <option value="Semester 7">Data Mining</option>
+                        <option value="Semester 7">Machine Learning</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Judul Materi</label>
+                    <input type="text" id="inputJudul" placeholder="Contoh: Pendahuluan, Instalasi, Struktur Dasar" required>
+                </div>
+                <div class="form-group">
+                    <label>Link Google Drive</label>
+                    <input type="url" id="inputLink" placeholder="https://drive.google.com/..." required>
+                </div>
+                <button type="submit" class="btn-save">
+                    <i class="bi bi-save"></i> Simpan ke Daftar
+                </button>
+            </form>
+        </div>
+
+        <!-- Grid Materi -->
+        <div class="materi-grid" id="containerMateri"></div>
+    </div>
+</div>
+
+<script>
+const form = document.getElementById('formMateri');
+const container = document.getElementById('containerMateri');
+
+// Data default materi
+const dataDefault = [
+    { 
+        sem: 'Semester 1', 
+        matkul: 'Paket Pemrograman 1', 
+        judul: 'Pengantar pemrograman, Pengelolaan bahasa pemrograman, Tipe data dan variabel, Pengenalan MS Office',
+        link: '#'
+    },
+    { 
+        sem: 'Semester 1', 
+        matkul: 'Algoritma dan Struktur Data 1', 
+        judul: 'Konsep algoritma, Flowchart dan pseudocode, Array dan linked list, Sorting dan searching',
+        link: '#'
+    },
+    { 
+        sem: 'Semester 3', 
+        matkul: 'Pemrograman Web', 
+        judul: 'Struktur HTML, CSS Dasar, JavaScript fundamentals, Konsep dasar Web Statis dan Dinamis',
+        link: '#'
+    },
+    { 
+        sem: 'Semester 3', 
+        matkul: 'Sistem Basis Data II', 
+        judul: 'Normalisasi database, Query optimization, Stored procedures, Database administration',
+        link: '#'
+    },
+    { 
+        sem: 'Semester 5', 
+        matkul: 'Sistem Penunjang Keputusan', 
+        judul: 'Konsep DSS, Model matematika, Analytical Hierarchy Process, Sistem pakar',
+        link: '#'
+    },
+    { 
+        sem: 'Semester 7', 
+        matkul: 'Data Mining', 
+        judul: 'Konsep Dasar Data Mining, Tahapan Utama, Algoritma FP-Growth, K-Means Clustering',
+        link: '#'
+    },
+    { 
+        sem: 'Semester 7', 
+        matkul: 'Machine Learning', 
+        judul: 'Introduction to ML, Supervised learning, Unsupervised learning, Neural networks',
+        link: '#'
+    }
+];
+
+function loadMateri() {
+    container.innerHTML = "";
+    const dataSimpanan = JSON.parse(localStorage.getItem('materiBaru')) || [];
+    const semuaMateri = [...dataSimpanan, ...dataDefault];
+    
+    semuaMateri.forEach(item => {
+        const daftarPoin = item.judul.split(',').map(p => p.trim());
+        let htmlJudul;
+        
+        if (daftarPoin.length > 1) {
+            htmlJudul = `<ul class="materi-list">`;
+            daftarPoin.forEach(poin => {
+                htmlJudul += `<li>${poin}</li>`;
+            });
+            htmlJudul += `</ul>`;
+        } else {
+            htmlJudul = `<p>${item.judul}</p>`;
+        }
+        
+        const card = document.createElement('div');
+        card.className = 'materi-card';
+        card.innerHTML = `
+            <div class="materi-card-content">
+                <span class="materi-tag">${item.sem}</span>
+                <h4>${item.matkul}</h4>
+                ${htmlJudul}
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const selectElement = document.getElementById('inputMatkul');
+    const newMateri = {
+        sem: selectElement.value,
+        matkul: selectElement.options[selectElement.selectedIndex].text,
+        judul: document.getElementById('inputJudul').value,
+        link: document.getElementById('inputLink').value
+    };
+    
+    const dataSimpanan = JSON.parse(localStorage.getItem('materiBaru')) || [];
+    dataSimpanan.unshift(newMateri);
+    localStorage.setItem('materiBaru', JSON.stringify(dataSimpanan));
+    
+    form.reset();
+    loadMateri();
+    alert("Materi tersimpan di memori browser!");
+});
+
+// Load materi saat halaman dimuat
+loadMateri();
+</script>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Program Studi Sistem Informasi</h4>
+        <p>
+          Institut Teknologi dan Ilmu Sosial Khatulistiwa<br>
+          Pasaman Barat
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <p>
+          Email: info@itskhatulistiwa.ac.id<br>
+          Telp: +62 813-6330-1879
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Media Sosial</h4>
+        <div class="footer-social">
+          <a href="https://wa.me/6281363301879" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <i class="bi bi-whatsapp" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://www.instagram.com/itskhatulistiwa?igsh=MWpubmtubjlkZ3cwbw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="bi bi-instagram" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://www.facebook.com/share/17gtsM2bMg/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <i class="bi bi-facebook" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://youtube.com/@itskhatulistiwa?si=zFGOd98SfwiE4H2Z" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <i class="bi bi-youtube" aria-hidden="true"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 Prodi Sistem Informasi – ITS Khatulistiwa
+    </div>
+</footer>
+
+</body>
+</html>

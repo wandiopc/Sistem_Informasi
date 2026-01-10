@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Dosen - Prodi Sistem Informasi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body>
+
+<div class="blue-header">
+  <div class="blue-header-inner">
+    <img src="asset/logo.png" alt="Logo ITS Khatulistiwa" class="header-logo">
+    <div class="brand-row">
+      <h1 class="site-title">PROGRAM STUDI SISTEM INFORMASI</h1>
+      <p class="header-sub">Institut Teknologi dan Ilmu Sosial Khatulistiwa (ITS Khatulistiwa) – Pasaman Barat</p>
+    </div>
+    
+    <nav class="main-nav">
+      <div class="nav-wrapper">
+        <button class="menu-toggle">☰</button>
+        <div class="nav-links">
+          <a href="index.html">Beranda</a>
+          <a href="dosen.html" class="active">Dosen</a>
+          <a href="mahasiswa.html">Mahasiswa</a>
+          <a href="kurikulum.html">Kurikulum</a>
+          <a href="materi.html">Materi</a>
+          <a href="tugas.html">Upload Tugas</a>
+          <a href="kontak.html">Kontak Person</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<div class="page-header">
+  <h1>Profil Dosen</h1>
+  <p class="subtitle">Detail Informasi Dosen</p>
+  <p class="desc">Informasi lengkap mengenai dosen Program Studi Sistem Informasi</p>
+</div>
+
+<div class="container">
+  <div class="profil-section">
+    <div class="profil-card" id="profilDosen">
+      <!-- Profil dosen tampil di sini -->
+    </div>
+  </div>
+</div>
+
+<script>
+// Data dosen statis
+const dosen = {
+    yuli: {
+        nama: "Yuli Hartati, M.Kom.",
+        foto: "foto/yuli.jpg",
+        bidang: "Pemrograman Web",
+        email: "yuli@itskhatulistiwa.ac.id"
+    },
+    fanny: {
+        nama: "Fanny Septiani Bufra, M.Kom.",
+        foto: "foto/fanny.jpg",
+        bidang: "Sistem Informasi",
+        email: "fanny@itskhatulistiwa.ac.id"
+    },
+    primadela: {
+        nama: "Primadela Antari, M.Kom.",
+        foto: "foto/primadela.jpg",
+        bidang: "Basis Data",
+        email: "primadela@itskhatulistiwa.ac.id"
+    },
+    deni: {
+        nama: "Deni Yuza Mahendra, M.Kom.",
+        foto: "foto/deni.jpg",
+        bidang: "Rekayasa Perangkat Lunak",
+        email: "deni@itskhatulistiwa.ac.id"
+    }
+};
+
+// Ambil parameter URL ?dosen=
+const params = new URLSearchParams(window.location.search);
+const key = params.get("dosen");
+const data = dosen[key];
+
+const container = document.getElementById("profilDosen");
+
+if (!data) {
+    container.innerHTML = `
+        <div class="error-message">
+            <i class="bi bi-exclamation-triangle"></i>
+            <h3>Data Tidak Ditemukan</h3>
+            <p>Profil dosen yang Anda cari tidak tersedia.</p>
+            <a href="dosen.html" class="btn-back">
+                <i class="bi bi-arrow-left"></i>
+                Kembali ke Daftar Dosen
+            </a>
+        </div>
+    `;
+} else {
+    container.innerHTML = `
+        <div class="profil-detail">
+            <div class="profil-photo">
+                <img src="${data.foto}" alt="${data.nama}" class="foto-dosen-detail">
+            </div>
+            <div class="profil-info">
+                <h2 class="dosen-name">${data.nama}</h2>
+                <div class="detail-item">
+                    <i class="bi bi-mortarboard"></i>
+                    <span><strong>Bidang Keahlian:</strong> ${data.bidang}</span>
+                </div>
+                <div class="detail-item">
+                    <i class="bi bi-envelope"></i>
+                    <span><strong>Email:</strong> ${data.email}</span>
+                </div>
+                <a href="dosen.html" class="btn-back">
+                    <i class="bi bi-arrow-left"></i>
+                    Kembali ke Daftar Dosen
+                </a>
+            </div>
+        </div>
+    `;
+}
+</script>
+
+<footer>
+    © 2025 Prodi Sistem Informasi Angkatan 24 – ITS Khatulistiwa, Pasaman Barat
+</footer>
+
+</body>
+</html>
