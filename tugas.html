@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Tugas - Prodi Sistem Informasi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            background-color: lightgray;
+        }
+        .tugas-minimal {
+            background-color: white;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+        }
+        .tugas-header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #444;
+            padding-bottom: 15px;
+        }
+        .tugas-header h2 {
+            color: navy;
+            margin: 0;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .form-minimal {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .form-minimal input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-minimal input:focus {
+            outline: none;
+            border-color: navy;
+        }
+        .btn-minimal {
+            background: navy;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-minimal:hover {
+            background: #001a33;
+        }
+        .status-message {
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== BLUE HEADER ===== -->
+<header class="blue-header">
+  <div class="blue-header-inner">
+    <div class="header-left">
+      <img src="asset/logo.png" alt="Logo Program Studi" class="header-logo">
+    </div>
+
+    <div class="brand-row">
+      <h1 class="site-title">PROGRAM STUDI SISTEM INFORMASI</h1>
+      <p class="header-sub">Institut Teknologi dan Ilmu Sosial Khatulistiwa (ITS Khatulistiwa) – Pasaman Barat</p>
+    </div>
+      <nav class="main-nav" role="navigation" aria-label="Main menu">
+        <div class="nav-wrapper">
+          <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu">☰</button>
+          <div class="nav-links" id="primary-menu" role="menubar"></div>
+        </div>
+      </nav>
+    </div>
+</header>
+
+<!-- ===== KONTEN UTAMA ===== -->
+<div class="container">
+    <div class="tugas-minimal">
+        <div class="tugas-header">
+            <h2>Upload Tugas</h2>
+        </div>
+        
+        <form id="formTugas" class="form-minimal">
+            <input type="text" id="nama" placeholder="Nama Lengkap" required>
+            <input type="text" id="nim" placeholder="NIM" required>
+            <input type="text" id="matkul" placeholder="Mata Kuliah" required>
+            <input type="url" id="link" placeholder="Link Google Drive" required>
+            
+            <button type="submit" class="btn-minimal">Kirim Tugas</button>
+        </form>
+        
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+</div>
+
+<script>
+document.getElementById("formTugas").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const statusMessage = document.getElementById("statusMessage");
+    const link = document.getElementById("link").value;
+    
+    // Simple validation for Google Drive link
+    if (!link.includes("drive.google.com")) {
+        statusMessage.className = "status-message status-error";
+        statusMessage.textContent = "Link harus dari Google Drive!";
+        statusMessage.style.display = "block";
+        return;
+    }
+    
+    // Get form data
+    const data = {
+        nama: document.getElementById("nama").value,
+        nim: document.getElementById("nim").value,
+        matkul: document.getElementById("matkul").value,
+        link: link,
+        tanggal: new Date().toLocaleDateString('id-ID')
+    };
+    
+    // Save to localStorage
+    let tugas = JSON.parse(localStorage.getItem("tugas")) || [];
+    tugas.push(data);
+    localStorage.setItem("tugas", JSON.stringify(tugas));
+    
+    // Show success message
+    statusMessage.className = "status-message status-success";
+    statusMessage.textContent = "Tugas berhasil dikirim!";
+    statusMessage.style.display = "block";
+    
+    // Reset form
+    this.reset();
+    
+    // Hide message after 3 seconds
+    setTimeout(() => {
+        statusMessage.style.display = "none";
+    }, 3000);
+});
+</script>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Program Studi Sistem Informasi</h4>
+        <p>
+          Institut Teknologi dan Ilmu Sosial Khatulistiwa<br>
+          Pasaman Barat
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <p>
+          Email: info@itskhatulistiwa.ac.id<br>
+          Telp: +62 813-6330-1879
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Media Sosial</h4>
+        <div class="footer-social">
+          <a href="https://wa.me/6281363301879" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <i class="bi bi-whatsapp" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://www.instagram.com/itskhatulistiwa?igsh=MWpubmtubjlkZ3cwbw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="bi bi-instagram" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://www.facebook.com/share/17gtsM2bMg/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <i class="bi bi-facebook" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://youtube.com/@itskhatulistiwa?si=zFGOd98SfwiE4H2Z" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <i class="bi bi-youtube" aria-hidden="true"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2024 Prodi Sistem Informasi – ITS Khatulistiwa
+    </div>
+</footer>
+
+</body>
+</html>

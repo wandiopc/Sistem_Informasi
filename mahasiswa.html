@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Data Mahasiswa - Prodi Sistem Informasi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            background-color: lightgray;
+        }
+        .tab-simple {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .tab-simple a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 5px;
+            background-color: #f0f0f0;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .tab-simple a:hover,
+        .tab-simple a.active {
+            background-color: navy;
+            color: white;
+        }
+        .mahasiswa-content {
+            background-color: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1000px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .mahasiswa-table-php {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .mahasiswa-table-php th,
+        .mahasiswa-table-php td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        .mahasiswa-table-php th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        .mahasiswa-table-php img {
+            width: 80px;
+            height: auto;
+            border-radius: 4px;
+        }
+        hr {
+            border: 1px solid #ccc;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== BLUE HEADER ===== -->
+<header class="blue-header">
+  <div class="blue-header-inner">
+    <div class="header-left">
+      <img src="asset/logo.png" alt="Logo Program Studi" class="header-logo">
+    </div>
+
+    <div class="brand-row">
+      <h1 class="site-title">PROGRAM STUDI SISTEM INFORMASI</h1>
+      <p class="header-sub">Institut Teknologi dan Ilmu Sosial Khatulistiwa (ITS Khatulistiwa) – Pasaman Barat</p>
+    </div>
+      <nav class="main-nav" role="navigation" aria-label="Main menu">
+        <div class="nav-wrapper">
+          <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu">☰</button>
+          <div class="nav-links" id="primary-menu" role="menubar"></div>
+        </div>
+      </nav>
+    </div>
+</header>
+
+<!-- ===== KONTEN UTAMA ===== -->
+<div class="container">
+    <!-- Tab Navigation (PHP Style) -->
+    <div class="tab-simple">
+        <a href="#" onclick="showAngkatan('2022')" id="tab-2022">Angkatan 2022</a>
+        <a href="#" onclick="showAngkatan('2023')" id="tab-2023">Angkatan 2023</a>
+        <a href="#" onclick="showAngkatan('2024')" id="tab-2024" class="active">Angkatan 2024</a>
+        <a href="#" onclick="showAngkatan('2025')" id="tab-2025">Angkatan 2025</a>
+    </div>
+
+    <div class="mahasiswa-content">
+        
+        <!-- Angkatan 2022 -->
+        <div id="angkatan-2022" class="angkatan-data" style="display: none;">
+            <h3>Mahasiswa Angkatan 2022</h3>
+            <table class="mahasiswa-table-php">
+                <tr>
+                    <th>No</th>
+                    <th>Foto</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>NIM</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><img src="asset/Mahasiswa/yani.jpeg" alt="Risa"></td>
+                    <td>Afriyani</td>
+                    <td>22722010010</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><img src="asset/Mahasiswa/Annisa.jpeg" alt="Annisa"></td>
+                    <td>Annisa</td>
+                    <td>22722010011</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Angkatan 2023 -->
+        <div id="angkatan-2023" class="angkatan-data" style="display: none;">
+            <h3>Mahasiswa Angkatan 2023</h3>
+            <table class="mahasiswa-table-php">
+                <tr>
+                    <th>No</th>
+                    <th>Foto</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>NIM</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><img src="asset/Mahasiswa/Sucy.jpeg" alt="Sucy"></td>
+                    <td>Sucy Mivtahlul Riski</td>
+                    <td>23572010002</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><img src="asset/Mahasiswa/Adib.jpeg" alt="Adib"></td>
+                    <td>Adib Abyan</td>
+                    <td>23572010003</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><img src="asset/Mahasiswa/Achika.jpeg" alt="Achika"></td>
+                    <td>Achika Zenli Putra</td>
+                    <td>23572010005</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><img src="asset/Mahasiswa/Nurhaliza.jpeg" alt="Nurhaliza"></td>
+                    <td>Nurhaliza</td>
+                    <td>23572010010</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Angkatan 2024 -->
+        <div id="angkatan-2024" class="angkatan-data">
+            <h3>Mahasiswa Angkatan 2024</h3>
+            <table class="mahasiswa-table-php">
+                <tr>
+                    <th>No</th>
+                    <th>Foto</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>NIM</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><img src="asset/Mahasiswa/risa.jpeg" alt="Risa"></td>
+                    <td>Risa Yolanda</td>
+                    <td>24572010001</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><img src="asset/Mahasiswa/enjel.jpeg" alt="Enjel"></td>
+                    <td>Angel</td>
+                    <td>24572010002</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><img src="asset/Mahasiswa/gina.jpeg" alt="Gina"></td>
+                    <td>Gina Sentia</td>
+                    <td>24572010005</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><img src="asset/Mahasiswa/wandi.jpeg" alt="Wandi"></td>
+                    <td>Jaswandi</td>
+                    <td>24572010006</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><img src="asset/Mahasiswa/raihan.jpeg" alt="Raihan"></td>
+                    <td>Raihan Naufal Putra</td>
+                    <td>24572010008</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><img src="asset/Mahasiswa/riri.jpeg" alt="Riri"></td>
+                    <td>Riri Anjeli</td>
+                    <td>24572010009</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><img src="asset/Mahasiswa/ina.jpeg" alt="Ina"></td>
+                    <td>Rosmaina</td>
+                    <td>24572010010</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><img src="asset/Mahasiswa/ayu.jpeg" alt="Ayu"></td>
+                    <td>Sri Rahayu Ningsih</td>
+                    <td>24572010011</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td><img src="asset/Mahasiswa/sovia.png" alt="Sovia"></td>
+                    <td>Sovia</td>
+                    <td>24572010012</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><img src="asset/Mahasiswa/edo.jpeg" alt="Edo"></td>
+                    <td>M. Edo Pane</td>
+                    <td>24572010024</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td><img src="asset/Mahasiswa/ella.jpeg" alt="Ella"></td>
+                    <td>Ella Suprani</td>
+                    <td>24572010025</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td><img src="asset/Mahasiswa/rika.jpeg" alt="Rika"></td>
+                    <td>Rika Yolanda Putri</td>
+                    <td>24572010026</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td><img src="asset/Mahasiswa/niken.jpeg" alt="Niken"></td>
+                    <td>Zelia Niken Faulina</td>
+                    <td>24572010027</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Angkatan 2025 -->
+        <div id="angkatan-2025" class="angkatan-data" style="display: none;">
+            <h3>Mahasiswa Angkatan 2025</h3>
+            <table class="mahasiswa-table-php">
+                <tr>
+                    <th>No</th>
+                    <th>Foto</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>NIM</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><img src="asset/Mahasiswa/nisa.jpeg" alt="Nisa"></td>
+                    <td>Khairunnisa Siregar</td>
+                    <td>255720100001</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><img src="asset/Mahasiswa/mulyadi.jpeg" alt="Mulyadi"></td>
+                    <td>M.Mulyadi</td>
+                    <td>255720100002</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><img src="asset/Mahasiswa/nabila.jpeg" alt="Nabila"></td>
+                    <td>Nabila Zahra</td>
+                    <td>255720100003</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><img src="asset/Mahasiswa/saskia.jpeg" alt="Saskia"></td>
+                    <td>Saskia Aryani</td>
+                    <td>255720100004</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><img src="asset/Mahasiswa/sofiatun.jpeg" alt="Sofiatun"></td>
+                    <td>Sofiatun Nabila</td>
+                    <td>255720100005</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><img src="asset/Mahasiswa/tasya.jpeg" alt="Tasya"></td>
+                    <td>Tasya Aulia Putri</td>
+                    <td>255720100007</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><img src="asset/Mahasiswa/yuni.jpeg" alt="Yuni"></td>
+                    <td>Yuni Hazara</td>
+                    <td>255720100008</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><img src="asset/Mahasiswa/alan.jpeg" alt="Alan"></td>
+                    <td>Ay.Fadlurrahman</td>
+                    <td>255720100015</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td><img src="asset/Mahasiswa/irna.jpeg" alt="Irna"></td>
+                    <td>Irna Rahmawati</td>
+                    <td>255720100017</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><img src="asset/Mahasiswa/salwa.jpeg" alt="Salwa"></td>
+                    <td>Salwa Maghfirah</td>
+                    <td>255720100018</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+function showAngkatan(angkatan) {
+    // Hide all angkatan data
+    const allData = document.querySelectorAll('.angkatan-data');
+    allData.forEach(data => {
+        data.style.display = 'none';
+    });
+    
+    // Remove active class from all tabs
+    const allTabs = document.querySelectorAll('.tab-simple a');
+    allTabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Show selected angkatan data
+    document.getElementById('angkatan-' + angkatan).style.display = 'block';
+    
+    // Add active class to selected tab
+    document.getElementById('tab-' + angkatan).classList.add('active');
+}
+
+// Initialize with 2024 as default
+document.addEventListener('DOMContentLoaded', function() {
+    showAngkatan('2024');
+});
+</script>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Program Studi Sistem Informasi</h4>
+        <p>
+          Institut Teknologi dan Ilmu Sosial Khatulistiwa<br>
+          Pasaman Barat
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <p>
+          Email: info@itskhatulistiwa.ac.id<br>
+          Telp: +62 813-6330-1879
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Media Sosial</h4>
+        <div class="footer-social">
+          <a href="https://wa.me/6281363301879" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <i class="bi bi-whatsapp" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://www.instagram.com/itskhatulistiwa?igsh=MWpubmtubjlkZ3cwbw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="bi bi-instagram" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://www.facebook.com/share/17gtsM2bMg/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <i class="bi bi-facebook" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://youtube.com/@itskhatulistiwa?si=zFGOd98SfwiE4H2Z" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <i class="bi bi-youtube" aria-hidden="true"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2024 Prodi Sistem Informasi Angkatan 24 – ITS Khatulistiwa, Pasaman Barat
+    </div>
+</footer>
+
+</body>
+</html>

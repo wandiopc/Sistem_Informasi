@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Kontak - ITS Khatulistiwa</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            background-color: lightgray;
+        }
+        .kontak-simple {
+            background-color: white;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 700px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+        }
+        .kontak-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #444;
+            padding-bottom: 15px;
+        }
+        .kontak-header h2 {
+            color: navy;
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .kontak-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .kontak-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .kontak-list li:last-child {
+            border-bottom: none;
+        }
+        .kontak-list strong {
+            color: navy;
+            min-width: 120px;
+            font-weight: 600;
+        }
+        .kontak-list a {
+            color: navy;
+            text-decoration: none;
+        }
+        .kontak-list a:hover {
+            text-decoration: underline;
+        }
+        .staff-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+        .staff-section h3 {
+            color: navy;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .staff-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .staff-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .staff-list li:last-child {
+            border-bottom: none;
+        }
+        .staff-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .staff-position {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .staff-email {
+            font-size: 14px;
+        }
+        .staff-email a {
+            color: navy;
+            text-decoration: none;
+        }
+        .staff-email a:hover {
+            text-decoration: underline;
+        }
+        .map-section {
+            background-color: white;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 1000px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+        }
+        .map-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .map-header h3 {
+            color: navy;
+            margin: 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @media(max-width: 768px) {
+            .kontak-simple, .map-section {
+                margin: 20px 15px;
+                padding: 20px;
+            }
+            .kontak-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            .kontak-list strong {
+                min-width: auto;
+            }
+            .map-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== BLUE HEADER ===== -->
+<header class="blue-header">
+  <div class="blue-header-inner">
+    <div class="header-left">
+      <img src="asset/logo.png" alt="Logo Program Studi" class="header-logo">
+    </div>
+
+    <div class="brand-row">
+      <h1 class="site-title">PROGRAM STUDI SISTEM INFORMASI</h1>
+      <p class="header-sub">Institut Teknologi dan Ilmu Sosial Khatulistiwa (ITS Khatulistiwa) – Pasaman Barat</p>
+    </div>
+      <nav class="main-nav" role="navigation" aria-label="Main menu">
+        <div class="nav-wrapper">
+          <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu">☰</button>
+          <div class="nav-links" id="primary-menu" role="menubar"></div>
+        </div>
+      </nav>
+    </div>
+</header>
+
+<!-- ===== KONTEN UTAMA ===== -->
+<div class="container">
+    <div class="kontak-simple">
+        <div class="kontak-header">
+            <h2>Informasi Kontak</h2>
+        </div>
+        
+        <ul class="kontak-list">
+            <li>
+                <strong>Alamat:</strong>
+                <span>Institut Teknologi dan Ilmu Sosial Khatulistiwa, Pasaman Barat, Sumatera Barat</span>
+            </li>
+            <li>
+                <strong>Telepon:</strong>
+                <span><a href="tel:+6281363301879">+62 813-6330-1879</a></span>
+            </li>
+            <li>
+                <strong>Email:</strong>
+                <span><a href="mailto:info@itskhatulistiwa.ac.id">info@itskhatulistiwa.ac.id</a></span>
+            </li>
+            <li>
+                <strong>WhatsApp:</strong>
+                <span><a href="https://wa.me/6281363301879" target="_blank">+62 813-6330-1879</a></span>
+            </li>
+        </ul>
+        
+        <div class="staff-section">
+            <h3>Kontak Dosen Program Studi sistem infromasi</h3>
+            <ul class="staff-list">
+                <li>
+                    <div class="staff-name">Yuli Hartati, S.Kom., M.Kom.</div>
+                    <div class="staff-position">Ketua Program Studi</div>
+                    <div class="staff-email"><a href="mailto:yuli.hartati@itskhatulistiwa.ac.id">yuli.hartati@itskhatulistiwa.ac.id</a></div>
+                </li>
+                <li>
+                    <div class="staff-name">Fanny Septiani Bufra, S.Kom., M.Kom.</div>
+                    <div class="staff-position">Sekretaris Program Studi</div>
+                    <div class="staff-email"><a href="mailto:fanny.bufra@itskhatulistiwa.ac.id">fanny.bufra@itskhatulistiwa.ac.id</a></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ===== LOKASI MAP ===== -->
+<div class="container">
+    <div class="map-section">
+        <div class="map-header">
+            <h3>Lokasi Kampus</h3>
+        </div>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d127674.1510903039!2d99.9209121!3d0.0425221!3m2!1i1024!2i768!4f13.1!2m1!1sits%20khatulistiwa%20yappas%20kabupaten%20pasaman!5e0!3m2!1sid!2sid!4v1768057786411!5m2!1sid!2sid"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lokasi Institut Teknologi dan Ilmu Sosial Khatulistiwa">
+            </iframe>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Program Studi Sistem Informasi</h4>
+        <p>
+          Institut Teknologi dan Ilmu Sosial Khatulistiwa<br>
+          Pasaman Barat
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <p>
+          Email: info@itskhatulistiwa.ac.id<br>
+          Telp: +62 813-6330-1879
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Media Sosial</h4>
+        <div class="footer-social">
+          <a href="https://wa.me/6281363301879" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <i class="bi bi-whatsapp" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://www.instagram.com/itskhatulistiwa?igsh=MWpubmtubjlkZ3cwbw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="bi bi-instagram" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://www.facebook.com/share/17gtsM2bMg/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <i class="bi bi-facebook" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://youtube.com/@itskhatulistiwa?si=zFGOd98SfwiE4H2Z" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <i class="bi bi-youtube" aria-hidden="true"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2024 Prodi Sistem Informasi – ITS Khatulistiwa
+    </div>
+</footer>
+
+</body>
+</html>
