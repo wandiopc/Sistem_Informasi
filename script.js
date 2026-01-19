@@ -1,4 +1,3 @@
-// ===== COMPREHENSIVE RESPONSIVE NAVIGATION SYSTEM =====
 class ResponsiveNavigation {
   constructor() {
     this.navbar = document.querySelector('.main-nav');
@@ -264,7 +263,6 @@ class ResponsiveNavigation {
   }
 }
 
-// Enhanced responsive utilities
 class ResponsiveUtils {
   static debounce(func, wait) {
     let timeout;
@@ -303,23 +301,19 @@ class ResponsiveUtils {
   }
 }
 
-// Initialize responsive navigation when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   window.responsiveNav = new ResponsiveNavigation();
 });
 
-// Handle page visibility changes
 document.addEventListener('visibilitychange', () => {
   if (document.hidden && window.responsiveNav) {
     window.responsiveNav.closeMobileMenu();
   }
 });
 
-// Legacy support for existing functionality
 const navLinks = document.querySelector('.nav-links');
 const menuToggle = document.querySelector('.menu-toggle');
 
-/* ===== Sticky navbar behavior ===== */
 (function(){
   const header = document.querySelector('.blue-header');
   const mainNav = document.querySelector('.main-nav');
@@ -363,13 +357,10 @@ const menuToggle = document.querySelector('.menu-toggle');
 
   window.addEventListener('scroll', updateSticky, {passive:true});
   window.addEventListener('resize', updateSticky);
-  // init
   updateSticky();
 })();
 
-// Mobile menu toggle (hamburger) - simplified and consistent
 if(menuToggle && navLinks){
-  // Ensure menu starts closed
   navLinks.classList.remove('show');
   menuToggle.setAttribute('aria-expanded', 'false');
   
@@ -388,7 +379,6 @@ if(menuToggle && navLinks){
     }
   });
 
-  // close menu when clicking outside
   document.addEventListener('click', (e)=>{
     if(!e.target.closest('.nav-wrapper') && navLinks.classList.contains('show')){
       navLinks.classList.remove('show');
@@ -397,7 +387,6 @@ if(menuToggle && navLinks){
     }
   });
 
-  // close menu when clicking menu items
   navLinks.addEventListener('click', (e)=>{
     if(e.target.tagName === 'A'){
       navLinks.classList.remove('show');
@@ -406,7 +395,6 @@ if(menuToggle && navLinks){
     }
   });
 
-  // keyboard support for menu toggle
   menuToggle.addEventListener('keydown', (e)=>{
     if(e.key === 'Enter' || e.key === ' '){
       e.preventDefault();
@@ -414,7 +402,6 @@ if(menuToggle && navLinks){
     }
   });
   
-  // close menu on window resize to desktop
   window.addEventListener('resize', ()=>{
     if(window.innerWidth > 768 && navLinks.classList.contains('show')){
       navLinks.classList.remove('show');
@@ -461,47 +448,108 @@ if(heroReset){
   });
 }
 
-/* ===== Manual hero slider ===== */
+/* ===== Manual hero slider - optimized for performance ===== */
 const slidesWrap = document.querySelector('.slides');
 const slides = document.querySelectorAll('.slide');
 const btnPrev = document.querySelector('.slider-arrow.prev');
 const btnNext = document.querySelector('.slider-arrow.next');
 let current = 0;
 const total = slides.length;
-const duration = 500; // ms
+const duration = 500;
+let isTransitioning = false;
 
 function goTo(index){
-  if(!slidesWrap) return;
+  if(!slidesWrap || isTransitioning || total === 0) return;
+  
   if(index < 0){ index = total - 1; }
   if(index >= total){ index = 0; }
+  
+  if(index === current) return;
+  
+  isTransitioning = true;
   current = index;
-  slidesWrap.style.transition = `transform ${duration}ms ease`;
-  slidesWrap.style.transform = `translateX(-${index * 100}%)`;
-  slidesWrap.setAttribute('data-current', String(current));
+  
+  requestAnimationFrame(() => {
+    slidesWrap.style.transition = `transform ${duration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+    slidesWrap.style.transform = `translateX(-${current * 100}%)`;
+    slidesWrap.setAttribute('data-current', String(current));
+  });
+  
+  setTimeout(() => {
+    isTransitioning = false;
+  }, duration + 50);
 }
 
-if(btnPrev){ btnPrev.addEventListener('click', ()=>{ goTo(current - 1); }); }
-if(btnNext){ btnNext.addEventListener('click', ()=>{ goTo(current + 1); }); }
+function throttledGoTo(index) {
+  if (!isTransitioning) {
+    goTo(index);
+  }
+}
 
-// keyboard support
+if(btnPrev){ 
+  btnPrev.addEventListener('click', () => throttledGoTo(current - 1)); 
+}
+if(btnNext){ 
+  btnNext.addEventListener('click', () => throttledGoTo(current + 1)); 
+}
+
+let keyboardThrottle = false;
 document.addEventListener('keydown', (e)=>{
-  if(e.key === 'ArrowLeft') goTo(current - 1);
-  if(e.key === 'ArrowRight') goTo(current + 1);
+  if(keyboardThrottle) return;
+  
+  if(e.key === 'ArrowLeft') {
+    throttledGoTo(current - 1);
+    keyboardThrottle = true;
+    setTimeout(() => keyboardThrottle = false, 300);
+  }
+  if(e.key === 'ArrowRight') {
+    throttledGoTo(current + 1);
+    keyboardThrottle = true;
+    setTimeout(() => keyboardThrottle = false, 300);
+  }
 });
 
-// Ensure images that fail to load fall back to default
-document.querySelectorAll('.slide img').forEach(img=>{
-  img.addEventListener('error', ()=>{ 
-    console.log('Image failed to load:', img.src);
-    img.src = 'asset/logo.png'; 
+function preloadSliderImages() {
+  slides.forEach((slide, index) => {
+    const img = slide.querySelector('img');
+    if (img && img.src) {
+      const preloadImg = new Image();
+      preloadImg.src = img.src;
+      
+      preloadImg.onload = () => {
+        img.style.opacity = '1';
+      };
+      
+      preloadImg.onerror = () => {
+        console.log('Image failed to load:', img.src);
+        img.src = 'asset/logo.png';
+        img.style.opacity = '1';
+      };
+    }
   });
-  img.addEventListener('load', ()=>{
-    console.log('Image loaded successfully:', img.src);
-  });
-});
+}
 
-// Initialize position
-goTo(0);
+function initializeSlider() {
+  if(slidesWrap && slides.length > 0) {
+    slidesWrap.style.transform = 'translateX(0%)';
+    slidesWrap.setAttribute('data-current', '0');
+    current = 0;
+    preloadSliderImages();
+    
+    // Optional: Add auto-play for testing (remove if not needed)
+    // setInterval(() => {
+    //   if (!isTransitioning) {
+    //     throttledGoTo(current + 1);
+    //   }
+    // }, 4000);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeSlider);
+} else {
+  initializeSlider();
+}
 
 // Show slider controls on pointer hover/move; keep touch toggle behavior
 const heroSlider = document.querySelector('.hero-slider');
