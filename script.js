@@ -493,6 +493,47 @@ if(btnNext){
   btnNext.addEventListener('click', () => throttledGoTo(current + 1)); 
 }
 
+// Touch/Swipe support for mobile
+let touchStartX = 0;
+let touchEndX = 0;
+let touchStartY = 0;
+let touchEndY = 0;
+
+function handleTouchStart(e) {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}
+
+function handleTouchEnd(e) {
+  touchEndX = e.changedTouches[0].screenX;
+  touchEndY = e.changedTouches[0].screenY;
+  handleSwipe();
+}
+
+function handleSwipe() {
+  const swipeThreshold = 50;
+  const swipeDistanceX = Math.abs(touchEndX - touchStartX);
+  const swipeDistanceY = Math.abs(touchEndY - touchStartY);
+  
+  // Only trigger swipe if horizontal movement is greater than vertical
+  if (swipeDistanceX > swipeDistanceY && swipeDistanceX > swipeThreshold) {
+    if (touchEndX < touchStartX) {
+      // Swipe left - next slide
+      throttledGoTo(current + 1);
+    }
+    if (touchEndX > touchStartX) {
+      // Swipe right - previous slide
+      throttledGoTo(current - 1);
+    }
+  }
+}
+
+// Add touch events to slider
+if (slidesWrap) {
+  slidesWrap.addEventListener('touchstart', handleTouchStart, { passive: true });
+  slidesWrap.addEventListener('touchend', handleTouchEnd, { passive: true });
+}
+
 let keyboardThrottle = false;
 document.addEventListener('keydown', (e)=>{
   if(keyboardThrottle) return;
@@ -535,13 +576,6 @@ function initializeSlider() {
     slidesWrap.setAttribute('data-current', '0');
     current = 0;
     preloadSliderImages();
-    
-    // Optional: Add auto-play for testing (remove if not needed)
-    // setInterval(() => {
-    //   if (!isTransitioning) {
-    //     throttledGoTo(current + 1);
-    //   }
-    // }, 4000);
   }
 }
 

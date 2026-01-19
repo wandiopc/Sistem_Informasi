@@ -1198,6 +1198,15 @@ body.offline::before {
   will-change:transform;
 }
 
+.hero-slider:hover .slider-arrow{
+  opacity:1;
+}
+
+.hero-slider .slider-arrow{
+  opacity:0.7;
+  transition:opacity 0.3s ease;
+}
+
 .slides{
   display:flex;
   transition:transform .5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1278,7 +1287,20 @@ body.offline::before {
 /* Hide arrows on mobile to prevent accidental taps */
 @media(max-width:768px){
   .slider-arrow{
-    display:none;
+    display:flex;
+    width:40px;
+    height:40px;
+    font-size:16px;
+    background:rgba(255,255,255,0.9);
+    opacity:0.7;
+  }
+  
+  .slider-arrow.prev{left:10px}
+  .slider-arrow.next{right:10px}
+  
+  .slider-arrow:hover{
+    opacity:1;
+    transform:translateY(-50%) scale(1.02);
   }
 }
 
