@@ -36,52 +36,7 @@
             color: #333;
             margin: 10px 0 0 0;
         }
-        .card-input {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-            border: 1px solid #ddd;
-        }
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        .form-group label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #333;
-        }
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-family: inherit;
-            font-size: 14px;
-        }
-        .btn-save {
-            grid-column: 1 / -1;
-            padding: 15px;
-            background: navy;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s ease;
-        }
-        .btn-save:hover {
-            background: #001a33;
-        }
+
         .materi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -159,41 +114,7 @@
             <p>Program Studi Sistem Informasi - ITS Khatulistiwa</p>
         </div>
 
-        <!-- Form Input Materi -->
-        <div class="card-input">
-            <form id="formMateri" class="form-grid">
-                <div class="form-group">
-                    <label>Pilih Mata Kuliah</label>
-                    <select id="inputMatkul" required>
-                        <option value="Semester 1">Paket Pemrograman 1</option>
-                        <option value="Semester 1">Algoritma dan Struktur Data 1</option>
-                        <option value="Semester 2">Paket Pemrograman 2</option>
-                        <option value="Semester 2">Sistem Basis Data I</option>
-                        <option value="Semester 3">Pemrograman Web</option>
-                        <option value="Semester 3">Sistem Basis Data II</option>
-                        <option value="Semester 4">Pemrograman Web II</option>
-                        <option value="Semester 4">Analisis dan Perancangan Sistem Informasi I</option>
-                        <option value="Semester 5">Pemrograman Berorientasi Objek I</option>
-                        <option value="Semester 5">Sistem Penunjang Keputusan</option>
-                        <option value="Semester 6">Cloud Computing</option>
-                        <option value="Semester 6">Deep Learning For Business</option>
-                        <option value="Semester 7">Data Mining</option>
-                        <option value="Semester 7">Machine Learning</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Judul Materi</label>
-                    <input type="text" id="inputJudul" placeholder="Contoh: Pendahuluan, Instalasi, Struktur Dasar" required>
-                </div>
-                <div class="form-group">
-                    <label>Link Google Drive</label>
-                    <input type="url" id="inputLink" placeholder="https://drive.google.com/..." required>
-                </div>
-                <button type="submit" class="btn-save">
-                    <i class="bi bi-save"></i> Simpan ke Daftar
-                </button>
-            </form>
-        </div>
+
 
         <!-- Grid Materi -->
         <div class="materi-grid" id="containerMateri"></div>
@@ -201,61 +122,86 @@
 </div>
 
 <script>
-const form = document.getElementById('formMateri');
 const container = document.getElementById('containerMateri');
 
-// Data default materi
-const dataDefault = [
+// Data materi per semester
+const dataMateri = [
     { 
         sem: 'Semester 1', 
         matkul: 'Paket Pemrograman 1', 
-        judul: 'Pengantar pemrograman, Pengelolaan bahasa pemrograman, Tipe data dan variabel, Pengenalan MS Office',
-        link: '#'
+        judul: 'Pengantar pemrograman, Pengelolaan bahasa pemrograman, Tipe data dan variabel, Pengenalan MS Office'
     },
     { 
         sem: 'Semester 1', 
         matkul: 'Algoritma dan Struktur Data 1', 
-        judul: 'Konsep algoritma, Flowchart dan pseudocode, Array dan linked list, Sorting dan searching',
-        link: '#'
+        judul: 'Konsep algoritma, Flowchart dan pseudocode, Array dan linked list, Sorting dan searching'
+    },
+    { 
+        sem: 'Semester 2', 
+        matkul: 'Paket Pemrograman 2', 
+        judul: 'Pemrograman lanjutan, Object-oriented programming, Database connectivity, Framework development'
+    },
+    { 
+        sem: 'Semester 2', 
+        matkul: 'Sistem Basis Data I', 
+        judul: 'Konsep database, Entity Relationship Diagram, SQL dasar, Database design'
     },
     { 
         sem: 'Semester 3', 
-        matkul: 'Pemrograman Web', 
-        judul: 'Struktur HTML, CSS Dasar, JavaScript fundamentals, Konsep dasar Web Statis dan Dinamis',
-        link: '#'
+        matkul: 'Pemrograman Web I', 
+        judul: 'Struktur HTML, CSS Dasar, JavaScript fundamentals, Konsep dasar Web Statis dan Dinamis'
     },
     { 
         sem: 'Semester 3', 
         matkul: 'Sistem Basis Data II', 
-        judul: 'Normalisasi database, Query optimization, Stored procedures, Database administration',
-        link: '#'
+        judul: 'Normalisasi database, Query optimization, Stored procedures, Database administration'
+    },
+    { 
+        sem: 'Semester 4', 
+        matkul: 'Pemrograman Web II', 
+        judul: 'Framework web, Server-side programming, API development, Web security'
+    },
+    { 
+        sem: 'Semester 4', 
+        matkul: 'Analisis dan Perancangan Sistem Informasi I', 
+        judul: 'Metodologi pengembangan sistem, Analisis kebutuhan, Use case diagram, Activity diagram'
+    },
+    { 
+        sem: 'Semester 5', 
+        matkul: 'Pemrograman Berorientasi Objek I', 
+        judul: 'Konsep OOP, Class dan object, Inheritance, Polymorphism, Encapsulation'
     },
     { 
         sem: 'Semester 5', 
         matkul: 'Sistem Penunjang Keputusan', 
-        judul: 'Konsep DSS, Model matematika, Analytical Hierarchy Process, Sistem pakar',
-        link: '#'
+        judul: 'Konsep DSS, Model matematika, Analytical Hierarchy Process, Sistem pakar'
+    },
+    { 
+        sem: 'Semester 6', 
+        matkul: 'Cloud Computing', 
+        judul: 'Konsep cloud computing, Service models, Deployment models, Cloud platforms'
+    },
+    { 
+        sem: 'Semester 6', 
+        matkul: 'Deep Learning For Business', 
+        judul: 'Neural networks, Deep learning algorithms, Business applications, Implementation strategies'
     },
     { 
         sem: 'Semester 7', 
         matkul: 'Data Mining', 
-        judul: 'Konsep Dasar Data Mining, Tahapan Utama, Algoritma FP-Growth, K-Means Clustering',
-        link: '#'
+        judul: 'Konsep Dasar Data Mining, Tahapan Utama, Algoritma FP-Growth, K-Means Clustering'
     },
     { 
         sem: 'Semester 7', 
         matkul: 'Machine Learning', 
-        judul: 'Introduction to ML, Supervised learning, Unsupervised learning, Neural networks',
-        link: '#'
+        judul: 'Introduction to ML, Supervised learning, Unsupervised learning, Neural networks'
     }
 ];
 
 function loadMateri() {
     container.innerHTML = "";
-    const dataSimpanan = JSON.parse(localStorage.getItem('materiBaru')) || [];
-    const semuaMateri = [...dataSimpanan, ...dataDefault];
     
-    semuaMateri.forEach(item => {
+    dataMateri.forEach(item => {
         const daftarPoin = item.judul.split(',').map(p => p.trim());
         let htmlJudul;
         
@@ -281,26 +227,6 @@ function loadMateri() {
         container.appendChild(card);
     });
 }
-
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const selectElement = document.getElementById('inputMatkul');
-    const newMateri = {
-        sem: selectElement.value,
-        matkul: selectElement.options[selectElement.selectedIndex].text,
-        judul: document.getElementById('inputJudul').value,
-        link: document.getElementById('inputLink').value
-    };
-    
-    const dataSimpanan = JSON.parse(localStorage.getItem('materiBaru')) || [];
-    dataSimpanan.unshift(newMateri);
-    localStorage.setItem('materiBaru', JSON.stringify(dataSimpanan));
-    
-    form.reset();
-    loadMateri();
-    alert("Materi tersimpan di memori browser!");
-});
 
 // Load materi saat halaman dimuat
 loadMateri();
